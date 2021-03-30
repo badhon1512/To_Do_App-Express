@@ -1,6 +1,16 @@
 const express=require('express');
+const mongoose=require('mongoose');
 
 const app=express();
+
+const Item=require('./models/items');
+
+
+const mongodb="mongodb+srv://badhon12:badhon123@cluster0.mmywa.mongodb.net/item-database?retryWrites=true&w=majority";
+
+mongoose.connect(mongodb,{ useUnifiedTopology: true , useNewUrlParser: true}).then(()=> console.log('connected')).catch(err=>console.log(err));
+
+
 
 let items=[
   {name:'mobole phone',
@@ -19,10 +29,17 @@ app.set('view engine','ejs');
 
 
 
-app.listen(3000);
+app.listen(4000);
 
 
-
+ app.get('/create-item',(req,res)=>{
+   let item=new Item({
+     name:'phone',
+     price:100
+   })
+   console.log('hello');
+   item.save().then(result=>res.send(result));
+ })
 app.get('/',(req,res)=>{
 
 res.render('index',{items:items})
