@@ -31,18 +31,25 @@ app.set('view engine','ejs');
 
 app.listen(4000);
 
-
+app.get('/get-item',(req,res)=>{
+  
+  
+  Item.find().then(result=>res.send(result));
+})
  app.get('/create-item',(req,res)=>{
    let item=new Item({
      name:'phone',
      price:100
    })
-   console.log('hello');
+   
    item.save().then(result=>res.send(result));
  })
 app.get('/',(req,res)=>{
 
-res.render('index',{items:items})
+  Item.find().then(result=>res.render('index',{items:result}));
+
+
+
 })
 
 
