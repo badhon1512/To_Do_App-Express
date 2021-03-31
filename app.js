@@ -26,10 +26,11 @@ price:100000
 
 
 app.set('view engine','ejs');
+app.use(express.urlencoded({extended:true}))
 
 
 
-app.listen(4000);
+app.listen(3000);
 
 app.get('/get-item',(req,res)=>{
   
@@ -52,7 +53,11 @@ app.get('/',(req,res)=>{
 
 })
 
+app.post('/add-item',(req,res)=>{
 
+  const item=new Item(req.body)
+  item.save().then(result=>res.redirect('/')).catch(err=>console.log(err));
+})
 app.get('/add-item',(req,res)=>{
 
   res.render('add-item');
