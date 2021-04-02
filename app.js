@@ -33,7 +33,7 @@ app.use(express.urlencoded({extended:true}))
 app.listen(3000);
 
 
-app.delete('/delete-item/:id',(req,res)=>{
+app.get('/delete-item/:id',(req,res)=>{
 
   Item.findByIdAndDelete(req.params.id).then(result=> res.redirect('/')).catch(err=>console.log(err));
 
