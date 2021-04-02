@@ -34,7 +34,8 @@
 
                 <td>  <a href="/delete-item/<%=item.id%>"><i class="material-icons">delete</i></a>
                 </td>
-                <td>  <i class="material-icons">edit</i>
+                <td> 
+                  <a ><i class="material-icons modal-trigger" href="#edit_item">edit</i></a> 
                 </td>
 
               </tr>
@@ -50,6 +51,31 @@
     </table>
           
   </div>
+
+
+
+  <div id="edit_item" class="modal">
+    <div class="modal-content">
+      <h1>Update modal</h1>
+
+      <form action="">
+        <input type="text" name="name" placeholder="name"><br>
+        <input type="number" name="price" placeholder="price">
+
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+    });
+  </script>
+          
 
   
 </body>
